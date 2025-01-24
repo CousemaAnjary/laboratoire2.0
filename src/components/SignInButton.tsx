@@ -16,7 +16,7 @@ export default function SignInButton() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <>
+        <form>
             <Button
                 formAction={async () => {
                     "use server"
@@ -26,6 +26,6 @@ export default function SignInButton() {
             >
                 Sign in with GitHub
             </Button>
-        </>
+        </form>
     )
 }

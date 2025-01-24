@@ -12,20 +12,27 @@ export default async function LoggedInButton() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    if (!session?.user) {
-        <SignInButton />
-    }
 
     /**
      * ! AFFICHAGE (render) de l'application
      */
     return (
         <>
-            <Avatar>
-                <AvatarImage src={session?.user?.image ?? ''} />
-                <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <LogoutInButton />
+            {!session?.user ? (
+                <SignInButton />
+            ) : (
+                <>
+                    <Avatar>
+                        <AvatarImage src={session?.user?.image ?? ''} />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+
+                    <h1>Vous êtes connecté avec ID : {session.user.id}</h1>
+                    <h1>{session.user.name}</h1>
+                    <p>{session.user.email}</p>
+                    <LogoutInButton />
+                </>
+            )}
         </>
     )
 }

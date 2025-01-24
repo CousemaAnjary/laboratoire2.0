@@ -1,4 +1,5 @@
-import SignInButton from "@/src/components/SignInButton"
+import LoggedInButton from "@/src/components/LoggedInButton"
+
 
 export default function Home() {
   /**
@@ -16,9 +17,8 @@ export default function Home() {
    */
   return (
     <>
-      < h1>Page</h1>
-      <SignInButton />
-
+      < h1>Page accueil</h1>
+      <LoggedInButton />
     </>
   )
 }

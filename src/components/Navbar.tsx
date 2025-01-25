@@ -22,7 +22,7 @@ export default function Navbar() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <nav className="flex justify-between items-center relative z-10 bg-white h-14 border mt-4 mx-auto w-full max-w-5xl rounded-full">
+        <nav className="flex justify-between items-center relative z-10  h-14 border mt-4 mx-auto w-full max-w-5xl rounded-full">
 
             {/* Logo et Menu */}
             <div className="flex items-center ms-5">
@@ -60,8 +60,12 @@ export default function Navbar() {
             <div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button size={'icon'} variant={'secondary'} className='rounded-full border mr-5'>
-                            <User className='text-slate-700' />
+                        <Button
+                            size={'icon'}
+                            variant={'secondary'}
+                            className="rounded-full border mr-5 text-gray-600 dark:text-gray-200 dark:border-gray-600"
+                        >
+                            <User />
                         </Button>
                     </DropdownMenuTrigger>
 

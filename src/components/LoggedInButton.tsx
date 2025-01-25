@@ -1,13 +1,17 @@
-import { auth } from "../lib/auth"
-import LogoutInButton from "./LogoutInButton"
+"use client"
+
 import SignInButton from "./SignInButton"
+import { useSession } from "next-auth/react"
+import LogoutInButton from "./LogoutInButton"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
-export default async function LoggedInButton() {
+
+
+export default function LoggedInButton() {
     /**
      * ! STATE (état, données) de l'application
      */
-    const session = await auth()
+    const { data: session } = useSession()
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -27,7 +31,7 @@ export default async function LoggedInButton() {
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
 
-                    <h1>Vous êtes connecté avec ID : {session.user.id}</h1>
+                    {/* <h1>Vous êtes connecté avec ID : {session.user.id}</h1> */}
                     <h1>{session.user.name}</h1>
                     <p>{session.user.email}</p>
                     <LogoutInButton />

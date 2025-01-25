@@ -1,7 +1,9 @@
-import { signOut } from "../lib/auth"
-import { Button } from "./ui/button"
 
-export default  function LogoutInButton() {
+
+import { Button } from "./ui/button"
+import { signOut } from "next-auth/react"
+
+export default function LogoutInButton() {
     /**
      * ! STATE (état, données) de l'application
      */
@@ -16,17 +18,7 @@ export default  function LogoutInButton() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <form>
-            <Button
-                formAction={async () => {
-                    "use server"
-                    await signOut()
-                }
-                }
-            >
-                Déconnexion
-            </Button>
-        </form>
+        <Button onClick={() => signOut()}>Sign out</Button>
 
     )
 }

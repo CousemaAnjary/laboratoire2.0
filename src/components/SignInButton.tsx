@@ -1,5 +1,5 @@
-import { signIn } from "../lib/auth"
 import { Button } from "./ui/button"
+import { signIn } from "next-auth/react"
 
 export default function SignInButton() {
     /**
@@ -16,16 +16,8 @@ export default function SignInButton() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <form>
-            <Button
-                formAction={async () => {
-                    "use server"
-                    await signIn("github")
-                }
-                }
-            >
-                Sign in with GitHub
-            </Button>
-        </form>
+
+
+        <Button onClick={() => signIn("github")}>Sign in with GitHub</Button>
     )
 }

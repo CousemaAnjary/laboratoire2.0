@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/Navbar"
 import LoggedInButton from "@/src/components/LoggedInButton"

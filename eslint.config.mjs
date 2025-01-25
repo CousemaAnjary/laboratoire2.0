@@ -15,6 +15,11 @@ const eslintConfig = [
     "next/typescript",
     "plugin:tailwindcss/recommended",
   ),
+  {
+    rules: {
+      "react/no-unescaped-entities": "0",
+    },
+  }
 ];
 
 export default eslintConfig;

@@ -1,7 +1,7 @@
-import { cn } from "@/src/lib/utils"
+import LoginForm from "@/src/components/modules/auth/login/components/LoginForm"
 import Navbar from "@/src/components/Navbar"
 import { GridPattern } from "@/src/components/ui/grid-pattern"
-import LoginForm from "@/src/components/modules/auth/login/components/LoginForm"
+import { cn } from "@/src/lib/utils"
 
 
 export default function Login() {
@@ -20,7 +20,7 @@ export default function Login() {
      */
     return (
         <>
-            <div className="flex flex-col min-h-screen ">
+            <div className="flex min-h-screen flex-col ">
                 <GridPattern width={50} height={50} x={-1} y={-1} strokeDasharray={"4 2"} className={cn("absolute inset-0 [mask-image:radial-gradient(900px_circle_at_center,white,transparent)]")} />
                 {/* <Toaster richColors /> */}
                 {/* En-tête */}
@@ -29,9 +29,9 @@ export default function Login() {
                 </header>
 
                 {/* Contenu principal */}
-                <main className="flex-grow">
+                <main className="grow">
                     {/* Section 1 */}
-                    <section className="flex justify-center items-center min-h-[84vh]">
+                    <section className="flex min-h-[84vh] items-center justify-center">
                         {/*  container du formulaire de connexion */}
                         <LoginForm />
                     </section>

@@ -1,21 +1,21 @@
 "use client"
-import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+import { z } from "zod"
 
 // import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
-import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
+import { FcGoogle } from "react-icons/fc"
 // import { useRouter } from "next/navigation"
 // import { login } from "../../register/services"
-import { Input } from "@/src/components/ui/input"
-import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { loginSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+import { Input } from "@/src/components/ui/input"
 import { signInAction } from "@/src/lib/auth.action"
+import { loginSchema } from "@/src/lib/validations/auth"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff, Loader } from "lucide-react"
 
 
 
@@ -63,13 +63,13 @@ export default function LoginForm() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <div className="relative p-8 w-full max-w-md">
-            <h1 className="mb-2 text-2xl font-medium font-spaceGrotesk text-black">Se connecter</h1>
-            <p className="mb-4 text-md text-black">
+        <div className="relative w-full max-w-md p-8">
+            <h1 className="mb-2 font-spaceGrotesk text-2xl font-medium ">Se connecter</h1>
+            <p className="mb-4">
                 Connectez-vous à votre compte pour accéder à votre espace personnel
             </p>
-            <p className="mb-4 text-sm  font-spaceGrotesk font-medium text-muted-foreground">
-                Vous n&apos;avez pas de compte ? Inscrivez-vous en cliquant <Link href="/auth/register" className="underline text-cyan-700">ici</Link>
+            <p className="mb-4 font-spaceGrotesk  text-sm font-medium text-muted-foreground">
+                Vous n&apos;avez pas de compte ? Inscrivez-vous en cliquant <Link href="/auth/register" className="text-cyan-700 underline">ici</Link>
             </p>
 
             <Form {...form} >
@@ -83,7 +83,7 @@ export default function LoginForm() {
                                     <FormItem>
                                         <FormLabel className="font-inter">Adresse email</FormLabel>
                                         <FormControl>
-                                            <Input {...field} placeholder="exemple@gmail.com" className="shadow-sm bg-white font-inter" />
+                                            <Input {...field} placeholder="exemple@gmail.com" className=" bg-white font-inter shadow-sm dark:bg-zinc-950" />
                                         </FormControl>
                                         <FormMessage className="font-inter" />
                                     </FormItem>
@@ -92,7 +92,7 @@ export default function LoginForm() {
                         </div>
 
                         <div className="grid grid-cols-9 gap-2">
-                            <div className="grid gap-2 col-span-8">
+                            <div className="col-span-8 grid gap-2">
                                 <FormField
                                     control={form.control}
                                     name="password"
@@ -100,14 +100,14 @@ export default function LoginForm() {
                                         <FormItem>
                                             <FormLabel className="font-inter">Mot de passe</FormLabel>
                                             <FormControl>
-                                                <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="shadow-sm bg-white font-inter" />
+                                                <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="bg-white font-inter shadow-sm" />
                                             </FormControl>
                                             <FormMessage className="font-inter" />
                                         </FormItem>
                                     )}
                                 />
                             </div>
-                            <div className="grid mb-1">
+                            <div className="mb-1 grid">
                                 <Button type="button" variant="outline" size={"icon"} className="mt-8" onClick={() => setShowPassword(!showPassword)}>
                                     {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
                                 </Button>
@@ -118,7 +118,7 @@ export default function LoginForm() {
                             <Button type="submit" className="w-full font-inter" disabled={loading}>
                                 {loading ? (
                                     <>
-                                        <Loader className="mr-2 h-4 w-4 animate-spin" />
+                                        <Loader className="mr-2 size-4 animate-spin" />
                                         Veuillez patienter
                                     </>
                                 ) : (

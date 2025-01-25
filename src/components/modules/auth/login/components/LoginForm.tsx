@@ -2,6 +2,7 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+
 // import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
@@ -14,7 +15,7 @@ import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-
+import { signInAction } from "@/src/lib/auth.action"
 
 
 
@@ -23,7 +24,7 @@ export default function LoginForm() {
      * ! STATE (état, données) de l'application
      */
     // const router = useRouter()
-    const [loading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
     const form = useForm<z.infer<typeof loginSchema>>({
@@ -40,6 +41,23 @@ export default function LoginForm() {
     const handleLogin = async (data: z.infer<typeof loginSchema>) => {
         console.log(data)
     }
+
+    const handleProviderLogin = async (provider: string) => {
+        // Affichage du loader pendant le chargement
+        setLoading(true)
+
+        try {
+            // Connexion avec le fournisseur
+            signInAction(provider, "/dashboard")
+
+        } catch (error) {
+            console.error("Error logging in with provider", error)
+
+        } finally {
+            // Désactivation du loader
+            setLoading(false)
+        }
+    };
 
     /**
      * ! AFFICHAGE (render) de l'application
@@ -122,7 +140,7 @@ export default function LoginForm() {
                                 </Button>
                             </div>
                             <div className="grid gap-2">
-                                <Button type="button" variant="outline" className="w-full font-inter">
+                                <Button type="button" variant="outline" className="w-full font-inter" onClick={async () => await handleProviderLogin("github")}>
                                     <FaGithub size={18} /> Github
                                 </Button>
                             </div>

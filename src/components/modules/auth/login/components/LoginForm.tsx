@@ -100,7 +100,7 @@ export default function LoginForm() {
                                         <FormItem>
                                             <FormLabel className="font-inter">Mot de passe</FormLabel>
                                             <FormControl>
-                                                <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="bg-white font-inter shadow-sm" />
+                                                <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="bg-white font-inter shadow-sm dark:bg-zinc-950" />
                                             </FormControl>
                                             <FormMessage className="font-inter" />
                                         </FormItem>

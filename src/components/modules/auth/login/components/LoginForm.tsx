@@ -48,7 +48,7 @@ export default function LoginForm() {
 
         try {
             // Connexion avec le fournisseur
-            signInAction(provider, "/")
+            signInAction(provider, "")
 
         } catch (error) {
             console.error("Error logging in with provider", error)

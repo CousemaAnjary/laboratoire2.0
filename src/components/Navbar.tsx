@@ -22,7 +22,7 @@ export default function Navbar() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <nav className="flex justify-between items-center relative z-10  h-14 border mt-4 mx-auto w-full max-w-5xl rounded-full">
+        <nav className="flex justify-between items-center relative bg-white dark:bg-zinc-950 h-14 border mt-4 mx-auto w-full max-w-5xl rounded-full">
 
             {/* Logo et Menu */}
             <div className="flex items-center ms-5">

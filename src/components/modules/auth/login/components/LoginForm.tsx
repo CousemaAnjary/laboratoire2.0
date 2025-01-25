@@ -17,6 +17,7 @@ import { loginSchema } from "@/src/lib/validations/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+import { signIn } from "next-auth/react"
 const DEFAULT_REDIRECT = "/dashboard"
 
 export default function LoginForm() {
@@ -48,7 +49,7 @@ export default function LoginForm() {
 
         try {
             // Connexion avec le fournisseur
-            signInAction(provider, DEFAULT_REDIRECT)
+            await signIn(provider, { callbackUrl: '/' })
 
         } catch (error) {
             console.error("Error logging in with provider", error)

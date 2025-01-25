@@ -10,14 +10,14 @@ import { FcGoogle } from "react-icons/fc"
 // import { useRouter } from "next/navigation"
 // import { login } from "../../register/services"
 import { Button } from "@/src/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+
 import { Input } from "@/src/components/ui/input"
 import { signInAction } from "@/src/lib/auth.action"
 import { loginSchema } from "@/src/lib/validations/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff, Loader } from "lucide-react"
-
-
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+const DEFAULT_REDIRECT = "/dashboard"
 
 export default function LoginForm() {
     /**
@@ -48,7 +48,7 @@ export default function LoginForm() {
 
         try {
             // Connexion avec le fournisseur
-            signInAction(provider, "")
+            signInAction(provider, DEFAULT_REDIRECT)
 
         } catch (error) {
             console.error("Error logging in with provider", error)

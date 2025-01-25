@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import { Button } from './ui/button'
-import ThemeSwitcher from './ThemeSwitcher'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from "./ui/select"
 import { Contact, House, Info, LayoutTemplate, LogIn, User } from 'lucide-react'
+import Link from 'next/link'
+import ThemeSwitcher from './ThemeSwitcher'
+import { Button } from './ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from "./ui/select"
 
 
 
@@ -22,16 +22,16 @@ export default function Navbar() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <nav className="flex justify-between items-center relative bg-white dark:bg-zinc-950 h-14 border mt-4 mx-auto w-full max-w-5xl rounded-full">
+        <nav className="relative z-10 mx-auto mt-4 flex h-14 w-full max-w-5xl items-center justify-between rounded-full border bg-white dark:bg-zinc-950">
 
             {/* Logo et Menu */}
-            <div className="flex items-center ms-5">
+            <div className="ms-5 flex items-center">
                 <LayoutTemplate />
-                <ul className='flex space-x-1 ms-2'>
+                <ul className='ms-2 flex space-x-1'>
                     <li>
                         <Link href="/">
                             <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
-                                <House className="w-3 h-3" />
+                                <House className="size-3" />
                                 <span>Accueil</span>
                             </Button>
 
@@ -40,7 +40,7 @@ export default function Navbar() {
                     <li>
                         <Link href="#">
                             <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
-                                <Info className="w-3 h-3" />
+                                <Info className="size-3" />
                                 <span>A propos de moi</span>
                             </Button>
 
@@ -49,7 +49,7 @@ export default function Navbar() {
                     <li>
                         <Link href="#">
                             <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
-                                <Contact className="w-3 h-3" />
+                                <Contact className="size-3" />
                                 <span>Contact</span>
                             </Button>
                         </Link>
@@ -63,25 +63,25 @@ export default function Navbar() {
                         <Button
                             size={'icon'}
                             variant={'secondary'}
-                            className="rounded-full border mr-5 text-gray-600 dark:text-gray-200 dark:border-gray-600"
+                            className="mr-5 rounded-full border text-gray-600 dark:border-gray-600 dark:text-gray-200"
                         >
                             <User />
                         </Button>
                     </DropdownMenuTrigger>
 
-                    <DropdownMenuContent className="w-72 mt-2">
+                    <DropdownMenuContent className="mt-2 w-72">
                         <DropdownMenuGroup className='space-y-3 p-2'>
                             {/* Theme Section */}
-                            <div className="flex justify-between items-center">
+                            <div className="flex items-center justify-between">
                                 <span className='font-spaceGrotesk text-sm'>Thème</span>
                                 <ThemeSwitcher />
                             </div>
 
                             {/* Language Section */}
-                            <div className="flex justify-between items-center">
+                            <div className="flex items-center justify-between">
                                 <span className='font-spaceGrotesk text-sm'>Langue</span>
                                 <Select defaultValue="fr">
-                                    <SelectTrigger className="w-[130px] h-7 font-spaceGrotesk">
+                                    <SelectTrigger className="h-7 w-[130px] font-spaceGrotesk">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -101,7 +101,7 @@ export default function Navbar() {
                         <Link href="/auth/login">
                             <DropdownMenuItem className="font-spaceGrotesk font-medium">
                                 <div className="flex items-center space-x-2">
-                                    <LogIn className="w-4 h-4" />
+                                    <LogIn className="size-4" />
                                     <span>Se connecter</span>
                                 </div>
                                 <DropdownMenuShortcut>⌘L</DropdownMenuShortcut>

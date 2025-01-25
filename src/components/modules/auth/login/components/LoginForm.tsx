@@ -48,7 +48,7 @@ export default function LoginForm() {
 
         try {
             // Connexion avec le fournisseur
-            signInAction(provider, "/dashboard")
+            signInAction(provider, "/")
 
         } catch (error) {
             console.error("Error logging in with provider", error)
@@ -140,7 +140,7 @@ export default function LoginForm() {
                                 </Button>
                             </div>
                             <div className="grid gap-2">
-                                <Button type="button" variant="outline" className="w-full font-inter" onClick={async () => await handleProviderLogin("github")}>
+                                <Button type="button" variant="outline" className="w-full font-inter" onClick={() => handleProviderLogin("github")}>
                                     <FaGithub size={18} /> Github
                                 </Button>
                             </div>

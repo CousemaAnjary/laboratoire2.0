@@ -1,6 +1,7 @@
 import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/Navbar"
 import { GridPattern } from "@/src/components/ui/grid-pattern"
+import LoginForm from "@/src/components/modules/auth/login/components/LoginForm"
 
 
 export default function Login() {
@@ -32,7 +33,7 @@ export default function Login() {
                     {/* Section 1 */}
                     <section className="flex justify-center items-center min-h-[84vh]">
                         {/*  container du formulaire de connexion */}
-                        {/* <LoginForm /> */}
+                        <LoginForm />
                     </section>
                 </main>
 

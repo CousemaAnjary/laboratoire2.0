@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import { Button } from './ui/button'
+import ThemeSwitcher from './ThemeSwitcher'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from "./ui/select"
-import { Contact, House, Info, LayoutTemplate, LogIn, Monitor, MoonStar, Sun, User } from 'lucide-react'
+import { Contact, House, Info, LayoutTemplate, LogIn, User } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu"
+
 
 
 export default function Navbar() {
@@ -68,11 +70,7 @@ export default function Navbar() {
                             {/* Theme Section */}
                             <div className="flex justify-between items-center">
                                 <span className='font-spaceGrotesk text-sm'>Thème</span>
-                                <div className="flex items-center border p-1 rounded-full space-x-2">
-                                    <Sun className=" cursor-pointer p-1 border rounded-full" />
-                                    <Monitor className="w-4 h-4 cursor-pointer" />
-                                    <MoonStar className="w-4 h-4 cursor-pointer" />
-                                </div>
+                                <ThemeSwitcher />
                             </div>
 
                             {/* Language Section */}

@@ -2,7 +2,7 @@
 
 import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/Navbar"
-import LoggedInButton from "@/src/components/LoggedInButton"
+
 import { GridPattern } from "@/src/components/ui/grid-pattern"
 
 
@@ -30,8 +30,7 @@ export default function Home() {
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        < h1>Page accueil</h1>
-        <LoggedInButton />
+
       </main>
 
       {/* Pied de page */}

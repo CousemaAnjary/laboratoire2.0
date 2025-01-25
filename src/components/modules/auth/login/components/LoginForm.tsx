@@ -49,7 +49,7 @@ export default function LoginForm() {
 
         try {
             // Connexion avec le fournisseur
-            await signIn(provider, { callbackUrl: '/' })
+            await signIn(provider, { callbackUrl: '/dashboard' })
 
         } catch (error) {
             console.error("Error logging in with provider", error)

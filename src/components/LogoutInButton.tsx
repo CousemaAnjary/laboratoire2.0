@@ -1,6 +1,7 @@
 import { Button } from "./ui/button"
 import { signOut } from "next-auth/react"
 
+
 export default function LogoutInButton() {
     /**
      * ! STATE (état, données) de l'application

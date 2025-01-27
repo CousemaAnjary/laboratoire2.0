@@ -1,4 +1,4 @@
-import LoginForm from "@/src/components/modules/auth/login/components/LoginForm"
+import LoginForm from "@/src/modules/auth/login/components/LoginForm"
 import Navbar from "@/src/components/Navbar"
 import { GridPattern } from "@/src/components/ui/grid-pattern"
 import { cn } from "@/src/lib/utils"

@@ -10,15 +10,12 @@ import { FcGoogle } from "react-icons/fc"
 // import { useRouter } from "next/navigation"
 // import { login } from "../../register/services"
 import { Button } from "@/src/components/ui/button"
-
 import { Input } from "@/src/components/ui/input"
-import { signInAction } from "@/src/lib/auth.action"
 import { loginSchema } from "@/src/lib/validations/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 import { signIn } from "next-auth/react"
-const DEFAULT_REDIRECT = "/dashboard"
 
 export default function LoginForm() {
     /**
@@ -136,7 +133,7 @@ export default function LoginForm() {
 
                         <div className="grid grid-cols-2 gap-2">
                             <div className="grid gap-2">
-                                <Button type="button" variant="outline" className="w-full font-inter" >
+                                <Button type="button" variant="outline" className="w-full font-inter" onClick={() => handleProviderLogin("google")}>
                                     <FcGoogle size={18} /> Google
                                 </Button>
                             </div>

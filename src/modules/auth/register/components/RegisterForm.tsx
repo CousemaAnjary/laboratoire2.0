@@ -1,16 +1,16 @@
 "use client"
-import { z } from "zod"
-import Link from "next/link"
-import { useState } from "react"
-import { register } from "../services"
-import { useForm } from "react-hook-form"
-import { useRouter } from "next/navigation"
-import { Input } from "@/src/components/ui/input"
-import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { registerSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+import { Input } from "@/src/components/ui/input"
+import { registerSchema } from "@/src/lib/validations/auth"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff, Loader } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { register } from "../services"
 
 
 
@@ -59,7 +59,7 @@ export default function RegisterForm() {
     return (
         <>
             <div className="relative p-8 w-full max-w-md">
-                <h1 className="mb-2 text-2xl font-medium font-spaceGrotesk  text-black">Inscription</h1>
+                <h1 className="mb-2 text-2xl font-medium font-spaceGrotesk">Inscription</h1>
                 <p className="mb-4 text-sm font-spaceGrotesk font-medium text-muted-foreground">
                     Vous avez déjà un compte ? Accédez-y en cliquant <Link href="/auth/login" className="underline text-cyan-700">ici</Link>
                 </p>
@@ -77,7 +77,7 @@ export default function RegisterForm() {
                                             <FormItem>
                                                 <FormLabel className="font-inter">Nom</FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} placeholder="ABDILLAH" className="shadow-sm bg-white font-inter" />
+                                                    <Input {...field} placeholder="ABDILLAH" className="shadow-sm bg-white dark:bg-zinc-950 font-inter" />
                                                 </FormControl>
                                                 <FormMessage className="font-inter" />
                                             </FormItem>

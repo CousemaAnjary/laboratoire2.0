@@ -16,12 +16,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
-    // const router = useRouter()
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -37,7 +38,22 @@ export default function LoginForm() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleLogin = async (data: z.infer<typeof loginSchema>) => {
-        console.log(data)
+        try {
+            const response = await signIn("credentials", {
+                redirect: false,
+                email: data.email,
+                password: data.password,
+            })
+
+            if (!response?.error) {
+                // Rediriger l'utilisateur vers la page de tableau de bord
+                router.push("/dashboard")
+            }
+
+        } catch (error) {
+            console.error("Error logging in with credentials", error)
+
+        }
     }
 
     const handleProviderLogin = async (provider: string) => {

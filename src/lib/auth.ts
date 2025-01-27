@@ -87,4 +87,8 @@ export const authOptions: NextAuthOptions = {
             return defaultEncode(params);
         },
     },
+
+    pages: {
+        signIn: "/auth/login",
+    },
 }

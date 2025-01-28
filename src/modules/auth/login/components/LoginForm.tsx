@@ -71,7 +71,7 @@ export default function LoginForm() {
             // Désactivation du loader
             setLoading(false)
         }
-    };
+    }
 
     /**
      * ! AFFICHAGE (render) de l'application

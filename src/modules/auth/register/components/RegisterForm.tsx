@@ -1,17 +1,16 @@
 "use client"
-import { Button } from "@/src/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-import { Input } from "@/src/components/ui/input"
-import { registerSchema } from "@/src/lib/validations/auth"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Eye, EyeOff, Loader } from "lucide-react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
 import { z } from "zod"
+import Link from "next/link"
+import { useState } from "react"
 import { register } from "../services"
-
+import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
+import { Input } from "@/src/components/ui/input"
+import { Eye, EyeOff, Loader } from "lucide-react"
+import { Button } from "@/src/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { registerSchema } from "@/src/lib/validations/auth"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 
 
 export default function RegisterForm() {

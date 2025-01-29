@@ -39,7 +39,7 @@ export const authOptions: NextAuthOptions = {
                 })
 
                 if (!user) {
-                    throw new Error("Aucun utilisateur trouvé avec cet e-mail.");
+                    throw new Error("Aucun utilisateur trouvé avec cet e-mail.")
                 }
 
                 // Vérifier le mot de passe
@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
                 }
 
                 // Retourner l'utilisateur pour créer une session
-                return user;
+                return user
             }
         }),
     ],

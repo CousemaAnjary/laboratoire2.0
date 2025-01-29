@@ -1,13 +1,14 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'
 import { prisma } from './prisma'
+import { v4 as uuid } from 'uuid'
 import { NextAuthOptions } from "next-auth"
+import { loginSchema } from './validations/auth'
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
-import CredentialsProvider from "next-auth/providers/credentials"
-import { loginSchema } from './validations/auth'
 import { encode as defaultEncode } from 'next-auth/jwt'
-import { v4 as uuid } from 'uuid';
+import CredentialsProvider from "next-auth/providers/credentials"
+
 
 export const authOptions: NextAuthOptions = {
     // Adapter : pour la connexion à la base de données

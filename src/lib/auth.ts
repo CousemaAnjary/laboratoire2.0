@@ -60,12 +60,13 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, account }) {
 
             if (account?.provider === "credentials") {
-                token.credentials = true;
+                token.credentials = true
             }
+            // Ajouter des informations supplémentaires à JWT
             return token
         },
     },
-    
+
     jwt: {
         encode: async function (params) {
             if (params.token?.credentials) {

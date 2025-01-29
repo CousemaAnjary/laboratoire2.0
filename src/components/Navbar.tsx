@@ -1,10 +1,9 @@
-import { Contact, House, Info, LayoutTemplate, LogIn, User } from 'lucide-react'
 import Link from 'next/link'
-import ThemeSwitcher from './ThemeSwitcher'
 import { Button } from './ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import ThemeSwitcher from './ThemeSwitcher'
+import { Contact, House, Info, LayoutTemplate, LogIn, User } from 'lucide-react'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from "./ui/select"
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu"
 
 
 export default function Navbar() {

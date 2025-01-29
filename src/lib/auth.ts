@@ -70,7 +70,8 @@ export const authOptions: NextAuthOptions = {
     jwt: {
         encode: async function (params) {
             if (params.token?.credentials) {
-                const sessionToken = uuid();
+
+                const sessionToken = uuid()
 
                 if (!params.token.sub) {
                     throw new Error("No user ID found in token");
@@ -88,7 +89,7 @@ export const authOptions: NextAuthOptions = {
 
                 return sessionToken;
             }
-            return defaultEncode(params);
+            return defaultEncode(params)
         },
     },
 

@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
             credentials: { email: {}, password: {} },
 
             async authorize(credentials) {
-                
+
                 // Valider les informations d'identification
                 const validated = loginSchema.parse(credentials)
 
@@ -65,6 +65,7 @@ export const authOptions: NextAuthOptions = {
             return token
         },
     },
+    
     jwt: {
         encode: async function (params) {
             if (params.token?.credentials) {

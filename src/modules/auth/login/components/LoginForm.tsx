@@ -1,22 +1,20 @@
 "use client"
+
+import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
-import { z } from "zod"
-
-// import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
-// import { useRouter } from "next/navigation"
-// import { login } from "../../register/services"
-import { Button } from "@/src/components/ui/button"
-import { Input } from "@/src/components/ui/input"
-import { loginSchema } from "@/src/lib/validations/auth"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Eye, EyeOff, Loader } from "lucide-react"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { Input } from "@/src/components/ui/input"
+import { Eye, EyeOff, Loader } from "lucide-react"
+import { Button } from "@/src/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { loginSchema } from "@/src/lib/validations/auth"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+
 
 export default function LoginForm() {
     /**

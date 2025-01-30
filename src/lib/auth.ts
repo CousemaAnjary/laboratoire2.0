@@ -70,7 +70,7 @@ export const authOptions: NextAuthOptions = {
 
     jwt: {
         encode: async function (params) {
-            
+
             if (params.token?.credentials) {
 
                 const sessionToken = uuid()
@@ -83,14 +83,16 @@ export const authOptions: NextAuthOptions = {
                     sessionToken: sessionToken,
                     userId: params.token.sub,
                     expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-                });
+                })
 
                 if (!createdSession) {
-                    throw new Error("Failed to create session");
+                    throw new Error("Failed to create session")
                 }
 
-                return sessionToken;
+                return sessionToken
             }
+
+            
             return defaultEncode(params)
         },
     },

@@ -9,13 +9,13 @@ import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import { encode as defaultEncode } from 'next-auth/jwt'
 import CredentialsProvider from "next-auth/providers/credentials"
-
+const SESSION_EXPIRATION_DAYS = parseInt(process.env.SESSION_EXPIRATION_DAYS || "30", 10);
 
 export const authOptions: NextAuthOptions = {
-    // Adapter : pour la connexion à la base de données
+    // Utilisation de Prisma pour la gestion des utilisateurs et sessions
     adapter: PrismaAdapter(prisma),
 
-    // Provider : pour les fournisseurs d'authentification ou les identifiants personnalisés
+    // Configuration des fournisseurs d'authentification
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID as string,
@@ -25,17 +25,15 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.GOOGLE_ID as string,
             clientSecret: process.env.GOOGLE_SECRET as string,
         }),
-
-        // Ajouter un fournisseur d'authentification personnalisé
         CredentialsProvider({
             credentials: { email: {}, password: {} },
 
             async authorize(credentials) {
 
-                // Valider les informations d'identification
+                // Valider les données reçues
                 const validated = loginSchema.parse(credentials)
 
-                // Rechercher l'utilisateur dans la base de données
+                // Vérifier si l'utilisateur existe
                 const user = await prisma.user.findUnique({
                     where: { email: validated.email },
                 })
@@ -57,15 +55,33 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
 
+    session: {
+        strategy: "database",  // NextAuth gère automatiquement les sessions via Prisma
+    },
+
     callbacks: {
-        async jwt({ token, account }) {
+        async jwt({ token, user, account }) {
 
             if (account?.provider === "credentials") {
                 token.credentials = true
             }
-            // Ajouter des informations supplémentaires à JWT
+
+            // Ajouter l'ID et le rôle utilisateur au JWT
+            if (user) {
+                token.id = user.id
+            }
+
             return token
         },
+
+        async session({ session, user }) {
+
+            if (session?.user) {
+                session.user.id = user.id // Ajouter l'ID utilisateur à la session
+            }
+
+            return session
+        }
     },
 
     jwt: {
@@ -76,23 +92,21 @@ export const authOptions: NextAuthOptions = {
                 const sessionToken = uuid()
 
                 if (!params.token.sub) {
-                    throw new Error("No user ID found in token");
+                    console.error("Erreur : Aucun ID utilisateur trouvé dans le token.")
+                    return defaultEncode(params)
                 }
 
-                const createdSession = await PrismaAdapter(prisma).createSession?.({
-                    sessionToken: sessionToken,
-                    userId: params.token.sub,
-                    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+                await prisma.session.create({
+                    data: {
+                        sessionToken: sessionToken,
+                        userId: params.token.sub,
+                        expires: new Date(Date.now() + SESSION_EXPIRATION_DAYS * 24 * 60 * 60 * 1000),
+                    },
                 })
-
-                if (!createdSession) {
-                    throw new Error("Failed to create session")
-                }
 
                 return sessionToken
             }
 
-            
             return defaultEncode(params)
         },
     },

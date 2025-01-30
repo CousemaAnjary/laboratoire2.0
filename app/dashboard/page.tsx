@@ -26,7 +26,7 @@ export default function Dashboard() {
                 <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
-            {/* <h1>Vous êtes connecté avec ID : {session.user.id}</h1> */}
+            <h1>Vous êtes connecté avec ID : {session?.user?.id}</h1>
             <h1>{session?.user?.name}</h1>
             <p>{session?.user?.email}</p>
             <LogoutInButton />

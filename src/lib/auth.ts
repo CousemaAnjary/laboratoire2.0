@@ -70,6 +70,7 @@ export const authOptions: NextAuthOptions = {
 
     jwt: {
         encode: async function (params) {
+            
             if (params.token?.credentials) {
 
                 const sessionToken = uuid()

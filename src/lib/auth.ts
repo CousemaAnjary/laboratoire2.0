@@ -57,6 +57,10 @@ export const authOptions: NextAuthOptions = {
         // }),
     ],
 
+    pages: {
+        signIn: '/auth/login',
+    },
+
     // callbacks: {
     //     async jwt({ token, user, account }) {
     //         // Indiquer que l'authentification via credentials a été utilisée

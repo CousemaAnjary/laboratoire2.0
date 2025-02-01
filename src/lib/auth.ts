@@ -30,10 +30,10 @@ export const authOptions: NextAuthOptions = {
 
             async authorize(credentials) {
 
-                // Valider les données reçues
+                // Validation des données reçues via votre schéma (par exemple avec Zod)
                 const validated = loginSchema.parse(credentials)
 
-                // Vérifier si l'utilisateur existe
+                // Vérifier si l'utilisateur existe dans la base de données
                 const user = await prisma.user.findUnique({
                     where: { email: validated.email },
                 })
@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
                 }
 
                 // Vérifier le mot de passe
-                const isPasswordValid = await bcrypt.compare(validated.password, user.password || "");
+                const isPasswordValid = await bcrypt.compare(validated.password, user.password || "")
 
                 if (!isPasswordValid) {
                     throw new Error("Mot de passe incorrect.")
@@ -56,37 +56,34 @@ export const authOptions: NextAuthOptions = {
     ],
 
     session: {
-        strategy: "database",  // NextAuth gère automatiquement les sessions via Prisma
+        strategy: "database", // NextAuth gère la session via Prisma
     },
 
     callbacks: {
         async jwt({ token, user, account }) {
-
+            // Indiquer que l'authentification via credentials a été utilisée
             if (account?.provider === "credentials") {
                 token.credentials = true
             }
-
-            // Ajouter l'ID et le rôle utilisateur au JWT
+            // Ajouter l'ID utilisateur dans le token
             if (user) {
                 token.id = user.id
             }
-
             return token
         },
 
         async session({ session, user }) {
-
+            // Ajouter l'ID utilisateur à la session côté client
             if (session?.user) {
                 session.user.id = user.id // Ajouter l'ID utilisateur à la session
             }
-
             return session
         }
     },
 
     jwt: {
         encode: async function (params) {
-
+            // Gestion personnalisée du token pour l'authentification par credentials
             if (params.token?.credentials) {
 
                 const sessionToken = uuid()

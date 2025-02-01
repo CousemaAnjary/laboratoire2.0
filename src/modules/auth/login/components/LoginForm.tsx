@@ -36,22 +36,19 @@ export default function LoginForm() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleLogin = async (data: z.infer<typeof loginSchema>) => {
-        try {
-            const response = await signIn("credentials", {
-                redirect: false,
-                email: data.email,
-                password: data.password,
-            })
+        // try {
+        //     await signIn("credentials", {
+        //         redirect: true,
+        //         email: data.email,
+        //         password: data.password,
+        //         callbackUrl: '/dashboard'
+        //     })
 
-            if (!response?.error) {
-                // Rediriger l'utilisateur vers la page de tableau de bord
-                router.push("/dashboard")
-            }
 
-        } catch (error) {
-            console.error("Error logging in with credentials", error)
+        // } catch (error) {
+        //     console.error("Error logging in with credentials", error)
 
-        }
+        // }
     }
 
     const handleProviderLogin = async (provider: string) => {

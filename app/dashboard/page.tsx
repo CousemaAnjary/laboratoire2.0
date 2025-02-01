@@ -9,7 +9,7 @@ export default function Dashboard() {
     /**
      * ! STATE (état, données) de l'application
      */
-    const { data: session } = useSession()
+    // const { data: session } = useSession()
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -21,7 +21,8 @@ export default function Dashboard() {
      */
     return (
         <>
-            <Avatar>
+            <p>bonjour</p>
+            {/* <Avatar>
                 <AvatarImage src={session?.user?.image ?? ''} />
                 <AvatarFallback>CN</AvatarFallback>
             </Avatar>
@@ -29,7 +30,7 @@ export default function Dashboard() {
             <h1>Vous êtes connecté avec ID : {session?.user?.id}</h1>
             <h1>{session?.user?.name}</h1>
             <p>{session?.user?.email}</p>
-            <LogoutInButton />
+            <LogoutInButton /> */}
         </>
     )
 }

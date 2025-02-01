@@ -25,90 +25,98 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.GOOGLE_ID as string,
             clientSecret: process.env.GOOGLE_SECRET as string,
         }),
-        CredentialsProvider({
-            credentials: { email: {}, password: {} },
+        // CredentialsProvider({
+        //     credentials: { email: {}, password: {} },
 
-            async authorize(credentials) {
+        //     async authorize(credentials) {
 
-                // Validation des données reçues via votre schéma (par exemple avec Zod)
-                const validated = loginSchema.parse(credentials)
+        //         // Validation des données reçues via votre schéma (par exemple avec Zod)
+        //         const validated = loginSchema.parse(credentials)
 
-                // Vérifier si l'utilisateur existe dans la base de données
-                const user = await prisma.user.findUnique({
-                    where: { email: validated.email },
-                })
+        //         // Vérifier si l'utilisateur existe dans la base de données
+        //         const user = await prisma.user.findUnique({
+        //             where: { email: validated.email },
+        //         })
 
-                if (!user) {
-                    throw new Error("Aucun utilisateur trouvé avec cet e-mail.")
-                }
+        //         if (!user) {
+        //             throw new Error("Aucun utilisateur trouvé avec cet e-mail.")
+        //         }
 
-                // Vérifier le mot de passe
-                const isPasswordValid = await bcrypt.compare(validated.password, user.password || "")
+        //         // Vérifier le mot de passe
+        //         const isPasswordValid = await bcrypt.compare(validated.password, user.password || "")
 
-                if (!isPasswordValid) {
-                    throw new Error("Mot de passe incorrect.")
-                }
+        //         if (!isPasswordValid) {
+        //             throw new Error("Mot de passe incorrect.")
+        //         }
 
-                // Retourner l'utilisateur pour créer une session
-                return user
-            }
-        }),
+        //         // Retourner l'utilisateur pour créer une session
+        //         return user
+        //     }
+        // }),
     ],
-
-    session: {
-        strategy: "database", // NextAuth gère la session via Prisma
-    },
-
+ 
     callbacks: {
-        async jwt({ token, user, account }) {
-            // Indiquer que l'authentification via credentials a été utilisée
-            if (account?.provider === "credentials") {
-                token.credentials = true
-            }
-            // Ajouter l'ID utilisateur dans le token
-            if (user) {
-                token.id = user.id
-            }
-            return token
+        async session({ session, token, user }) {
+            console.log("Session:", session);
+            return session;
         },
-
-        async session({ session, user }) {
-            // Ajouter l'ID utilisateur à la session côté client
-            if (session?.user) {
-                session.user.id = user.id // Ajouter l'ID utilisateur à la session
-            }
-            return session
+        async jwt({ token, user }) {
+            console.log("JWT Token:", token);
+            return token;
         }
     },
 
-    jwt: {
-        encode: async function (params) {
-            // Gestion personnalisée du token pour l'authentification par credentials
-            if (params.token?.credentials) {
 
-                const sessionToken = uuid()
+    // callbacks: {
+    //     async jwt({ token, user, account }) {
+    //         // Indiquer que l'authentification via credentials a été utilisée
+    //         if (account?.provider === "credentials") {
+    //             token.credentials = true
+    //         }
+    //         // Ajouter l'ID utilisateur dans le token
+    //         if (user) {
+    //             token.id = user.id
+    //         }
+    //         return token
+    //     },
 
-                if (!params.token.sub) {
-                    console.error("Erreur : Aucun ID utilisateur trouvé dans le token.")
-                    return defaultEncode(params)
-                }
+    //     async session({ session, user }) {
+    //         // Ajouter l'ID utilisateur à la session côté client
+    //         if (session?.user) {
+    //             session.user.id = user.id // Ajouter l'ID utilisateur à la session
+    //         }
+    //         return session
+    //     }
+    // },
 
-                await prisma.session.create({
-                    data: {
-                        sessionToken: sessionToken,
-                        userId: params.token.sub,
-                        expires: new Date(Date.now() + SESSION_EXPIRATION_DAYS * 24 * 60 * 60 * 1000),
-                    },
-                })
+    // jwt: {
+    //     encode: async function (params) {
+    //         // Gestion personnalisée du token pour l'authentification par credentials
+    //         if (params.token?.credentials) {
 
-                return sessionToken
-            }
+    //             const sessionToken = uuid()
 
-            return defaultEncode(params)
-        },
-    },
+    //             if (!params.token.sub) {
+    //                 console.error("Erreur : Aucun ID utilisateur trouvé dans le token.")
+    //                 return defaultEncode(params)
+    //             }
 
-    pages: {
-        signIn: "/auth/login",
-    },
+    //             await prisma.session.create({
+    //                 data: {
+    //                     sessionToken: sessionToken,
+    //                     userId: params.token.sub,
+    //                     expires: new Date(Date.now() + SESSION_EXPIRATION_DAYS * 24 * 60 * 60 * 1000),
+    //                 },
+    //             })
+
+    //             return sessionToken
+    //         }
+
+    //         return defaultEncode(params)
+    //     },
+    // },
+
+    // pages: {
+    //     signIn: "/auth/login",
+    // },
 }

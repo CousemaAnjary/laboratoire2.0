@@ -15,6 +15,8 @@ export const authOptions: NextAuthOptions = {
     // Utilisation de Prisma pour la gestion des utilisateurs et sessions
     adapter: PrismaAdapter(prisma),
 
+  
+
     // Configuration des fournisseurs d'authentification
     providers: [
         GithubProvider({
@@ -54,18 +56,6 @@ export const authOptions: NextAuthOptions = {
         //     }
         // }),
     ],
- 
-    callbacks: {
-        async session({ session, token, user }) {
-            console.log("Session:", session);
-            return session;
-        },
-        async jwt({ token, user }) {
-            console.log("JWT Token:", token);
-            return token;
-        }
-    },
-
 
     // callbacks: {
     //     async jwt({ token, user, account }) {
@@ -116,7 +106,5 @@ export const authOptions: NextAuthOptions = {
     //     },
     // },
 
-    // pages: {
-    //     signIn: "/auth/login",
-    // },
+
 }

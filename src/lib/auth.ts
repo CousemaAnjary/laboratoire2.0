@@ -16,7 +16,6 @@ export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
 
   
-
     // Configuration des fournisseurs d'authentification
     providers: [
         GithubProvider({
